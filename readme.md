@@ -3,6 +3,7 @@
 
 This plugin creates tooltips to show more information about terms listed in a yaml file. It is also possible to generate a glossary in list format containing all the terms present in the Yaml file.
 
+Fork from [remark-auto-glossary](https://github.com/renatonagliati/remark-auto-glossary.git)
 
 ## Installation (for Docusaurus)
 
@@ -10,7 +11,7 @@ On Docusaurus ```package.json``` file, insert the following line inside dependen
 
 
 ```bash
-  "@renatonagliati/remark-auto-glossary": "https://github.com/renatonagliati/remark-auto-glossary.git",
+  "@marko298/remark-auto-glossary": "https://github.com/marko298/remark-auto-glossary.git",
 ```
 
 If you want to install this plugin storing it in a local folder outside Docusaurus project, please install ```react-tooltip``` on Docusaurus. For that run:
@@ -24,7 +25,7 @@ If you want to install this plugin storing it in a local folder outside Docusaur
 On ```docusaurus.config.js``` file, insert the following line inside remarkPlugins array:
 
 ```bash
-[(await import("@renatonagliati/remark-auto-glossary")).default, { yamlFile: 'glossary.yml' }]
+[require("@marko298/remark-auto-glossary"), { yamlFile: 'glossary.yml' }]
 ```
 
 The ```yamFile``` property is required (input the glossary file path).

@@ -1,6 +1,6 @@
 {
-    "name": "@renatonagliati/remark-auto-glossary",
-    "version": "0.3.0",
+    "name": "@marko298/remark-auto-glossary",
+    "version": "0.4.0",
     "description": "Remark plugin to assign tooltips with term glossary information",
     "license": "MIT",
     "keywords": [
@@ -13,8 +13,8 @@
         "glossary",
         "tooltip"
     ],
-    "repository": "renatonagliati/remark-auto-gloassary",
-    "bugs": "https://github.com/renatonagliati/remark-auto-gloassary/issues",
+    "repository": "marko298/remark-auto-gloassary",
+    "bugs": "https://github.com/marko298/remark-auto-gloassary/issues",
     "funding": {
         "type": "opencollective",
         "url": "https://opencollective.com/unified"
@@ -24,7 +24,6 @@
         "Renato Nagliati <renatonagliati@gmail.com> (https://renatonagliati.com)"
     ],
     "sideEffects": false,
-    "type": "module",
     "main": "index.js",
     "types": "lib/remark-auto-glossary.d.ts",
     "files": [

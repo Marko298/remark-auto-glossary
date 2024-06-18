@@ -1,11 +1,12 @@
-import { visit } from 'unist-util-visit';
-import { yamlFileHandler } from './lib/utils/yaml-file-handler.js';
-import { generateTooltip } from './lib/tooltips.js';
-import { generateGlossary } from './lib/glossary.js';
+const { visit } = require('unist-util-visit');
 
-export default function remarkAutoGlossary(options) {
+const { generateTooltip } = require('./lib/tooltips');
+const { yamlFileHandler } = require('./lib/utils/yaml-file-handler');
+const { generateGlossary } = require('./lib/glossary');
 
-  const transformer = async (ast) => {
+module.exports = function remarkAutoGlossary(options) {
+
+  return async (ast) => {
     const glossaryFileContent = yamlFileHandler(options.yamlFile);
 
     if (false !== glossaryFileContent) {
@@ -13,7 +14,7 @@ export default function remarkAutoGlossary(options) {
       let hasTooltips = false;
       visit(ast, 'text', (node, idx, parent) => {
         const tooltipNodes = generateTooltip(glossaryFileContent, node, idx, parent);
-        
+
         // insert into the parent
         if (false !== tooltipNodes) {
           hasTooltips = true;
@@ -27,7 +28,7 @@ export default function remarkAutoGlossary(options) {
 
       // Handle glossary list
       visit(ast, 'paragraph', (node, idx, parent) => {
-        if ( 'undefined' == typeof node || 'undefined' == typeof node.children )
+        if ('undefined' == typeof node || 'undefined' == typeof node.children)
           return;
 
         node.children.every(node_temp => {
@@ -36,9 +37,9 @@ export default function remarkAutoGlossary(options) {
           if (false !== glossary) {
             node.type = 'html';
             node.value = glossary;
-          }          
+          }
         });
-      });      
+      });
 
       // Import libs
       if (hasTooltips) {
@@ -52,12 +53,10 @@ export default function remarkAutoGlossary(options) {
               type: 'import',
               value: item
             });
-          }); 
+          });
         });
       }
     }
 
   };
-
-  return transformer;
 };
